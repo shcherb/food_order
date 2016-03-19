@@ -1,0 +1,127 @@
+div.fixRightBlock {
+    position: fixed;
+    right: 10px;
+    top: 240px;
+    z-index: 3;
+}
+
+button, input, select, textarea {
+    color: #333;
+    display: inline-block;
+    font-family: Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+}
+
+.cart-submit {
+	display:inline-block;
+	font-size:1.69231em;
+}
+
+.cart-submit .btn-link {
+    border-radius: 3px;
+}
+
+.cart-submit .btn-link-i {
+	padding:0.59091em 2.44444em;
+}
+
+.btn-link {
+	background-clip:padding-box;
+	border:0;
+	cursor:pointer;
+	display:inline-block;
+	position:relative;
+	vertical-align:middle;
+	outline:0em;
+	border-radius:3px;
+	margin-bottom:2px;
+}
+
+.btn-link:active,.promo-add-photo-hidden:active + .promo-add-photo-button {
+	margin-top:2px;
+	margin-bottom:0;
+	/* фикс нажатия на кнопки в Опере и ИЕ *//*&:after {
+		display: block;
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 2;
+
+	}*/
+}
+
+.btn-link.disabled {
+	opacity:0.3;
+	box-shadow:none;
+	margin-top:0;
+	margin-bottom:2px;
+	cursor:default;
+}
+
+.btn-link.disabled .btn-link-i {
+	cursor:default;
+}
+
+.underline {
+	text-decoration:underline;
+}
+
+.btn-link-i {
+	background:none;
+	border:0;
+	color:#333;
+	cursor:pointer;
+	display:inline-block;
+	position:relative;
+	z-index:1;
+	outline:none;
+	text-align:center;
+	text-decoration:none;
+	white-space:nowrap;
+}
+
+.btn-link-i:link,.btn-link-i:visited {
+	color:#333;
+}
+
+.btn-link-i:hover {
+	text-decoration:none;
+}
+
+.btn-link-green {
+	background:#4bbe3f;
+	background:-moz-linear-gradient(top, #79d670, #4bbe3f);
+	box-shadow:3px 3px 7px 0 rgba(105, 206, 95, .5), inset 0 -3px 0 0 #3a9731;
+	/* BTN-LINK-GRAY */
+}
+
+.btn-link-green .btn-link-i {
+	color:#fff;
+	text-shadow:0 -1px 0 rgba(0, 0, 0, .3);
+}
+
+.btn-link-green .btn-link-i:link,.btn-link-green .btn-link-i:visited {
+	color:#fff;
+}
+
+.btn-link-green:hover {
+	background:#1fc80d;
+	background:-moz-linear-gradient(top, #69f95b, #1fc80d);
+}
+
+.btn-link-green:active {
+	background:#29b11b;
+	background:-moz-linear-gradient(top, #62cf57, #29b11b);
+	box-shadow:3px 3px 7px 0 rgba(105, 206, 95, .5), inset 0 -1px 0 0 #3a9731;
+}
+
+.btn-link-green:active .btn-link-i {
+	color:#a2e09d;
+}
