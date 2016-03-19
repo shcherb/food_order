@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  root "home#index"
   resources :menus
   resources :users
   resources :carts
+
+  devise_scope :user do
+    get 'signin' => 'users/sessions#new'
+    match 'signout', to: 'users/sessions#destroy', via: :delete
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
