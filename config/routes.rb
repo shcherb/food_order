@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
   #get 'static_pages/example1'
+  devise_for :users, module: "users"
 
-  devise_for :users
-
-  root "home#index"
+  root 'menus#index'
   resources :menus
-  resources :users
+  #resources :users
   resources :carts
 
   devise_scope :user do
     get 'signin' => 'users/sessions#new'
-    match 'signout', to: 'users/sessions#destroy', via: :delete
+    match 'signout', to: 'users/sessions#destroy', via: :get
   end
 
 
