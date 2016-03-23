@@ -3,6 +3,9 @@ class Menu < ActiveRecord::Base
   has_many :cart_items
   before_destroy :ensure_not_referenced_by_any_cart_item
 
+  validates :user_id, presence: true
+  validates :name, presence: true
+
   private
   def ensure_not_referenced_by_any_cart_item
     if cart_items.empty?

@@ -5,7 +5,7 @@ class MenusController < ApplicationController
   # GET /menus
   # GET /menus.json
   def index
-    @menus = Menu.all
+    @menus = current_user.menus
   end
 
   # GET /menus/1
@@ -25,7 +25,7 @@ class MenusController < ApplicationController
   # POST /menus
   # POST /menus.json
   def create
-    @menu = Menu.new(menu_params)
+    @menu = current_user.menus.build(menu_params)
 
     respond_to do |format|
       if @menu.save

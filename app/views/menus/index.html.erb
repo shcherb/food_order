@@ -25,6 +25,7 @@
         <td><%= link_to 'Show', menu %></td>
         <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
         <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Add to Cart', menus_path(menu_id: menu) %></td>
       </tr>
     <% end %>
   </tbody>
