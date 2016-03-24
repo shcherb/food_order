@@ -2,11 +2,6 @@ class DishesController < ApplicationController
   before_action :set_categories
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
 
-  # GET /dishes/compose
-  def compose
-    @dishes = Dish.all
-  end
-
   # GET /dishes
   # GET /dishes.json
   def index

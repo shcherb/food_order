@@ -3,15 +3,15 @@ Rails.application.routes.draw do
   devise_for :users, module: "users"
 
   root 'menus#index'
-  resources :menus
-  #resources :users
-  resources :carts
-  resources :categories
-  resources :dishes do
-    collection do
+  resources :menus  do
+    member do
       get 'compose'
     end
   end
+  #resources :users
+  resources :carts
+  resources :categories
+  resources :dishes
   #get 'dishes/compose'
 
 #  devise_scope :user do

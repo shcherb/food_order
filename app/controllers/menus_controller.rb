@@ -1,6 +1,11 @@
 class MenusController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_menu, only: [:show, :edit, :update, :destroy]
+  before_action :set_menu, only: [:compose, :show, :edit, :update, :destroy]
+
+  # GET /menues/1/compose
+  def compose
+    @dishes = Dish.all
+  end
 
   # GET /menus
   # GET /menus.json
