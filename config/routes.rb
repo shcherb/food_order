@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   resources :menus
   #resources :users
   resources :carts
+  resources :categories
+  resources :dishes
 
-  devise_scope :user do
-    get 'signin' => 'users/sessions#new'
-    match 'signout', to: 'users/sessions#destroy', via: :get
-  end
+#  devise_scope :user do
+#    get 'signin' => 'users/sessions#new'
+#    match 'signout', to: 'users/sessions#destroy', via: :get
+#  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

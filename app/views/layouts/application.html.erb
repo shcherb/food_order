@@ -9,6 +9,21 @@
 <body>
   <p class="alert"><%= alert %></p>
 
+  <% if user_signed_in? %>
+    <table border="1">
+      <tbody>
+        <tr>
+          <td><%= link_to ' Menus ', menus_path %></td>
+          <td><%= link_to ' Categiries ', categories_path %></td>
+          <td><%= link_to ' Dishes ', dishes_path %></td>
+          <td><%= link_to ' Profile ', edit_user_registration_path %></td>
+          <td><%= link_to ' Sign out ', destroy_user_session_path, method: :delete %></dh>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+
+
 <%= yield %>
 
 </body>

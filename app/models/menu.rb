@@ -1,18 +1,6 @@
 class Menu < ActiveRecord::Base
   belongs_to :user
-  has_many :cart_items
-  before_destroy :ensure_not_referenced_by_any_cart_item
+  has_and_belongs_to_many :dishes
 
-  validates :user_id, presence: true
   validates :name, presence: true
-
-  private
-  def ensure_not_referenced_by_any_cart_item
-    if cart_items.empty?
-      return true
-    else
-      errors.add(:base, 'has menu items')
-      return false
-    end
-  end
 end
