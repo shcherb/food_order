@@ -2,6 +2,11 @@ class DishesController < ApplicationController
   before_action :set_categories
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
 
+  # GET /dishes/compose
+  def compose
+    @dishes = Dish.all
+  end
+
   # GET /dishes
   # GET /dishes.json
   def index
@@ -68,16 +73,12 @@ class DishesController < ApplicationController
       @dish = Dish.find(params[:id])
     end
 
-    def set_menu
-      @current_menu = Menu.find(params[:menu_id])
-    end
-
     def set_categories
       @categories = Category.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dish_params
-      params.require(:dish).permit(:menu_id, :categiry_id, :name, :description, :price)
+      params.require(:dish).permit(:category_id, :name, :description, :price)
     end
 end

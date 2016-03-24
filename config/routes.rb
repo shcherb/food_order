@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   #resources :users
   resources :carts
   resources :categories
-  resources :dishes
+  resources :dishes do
+    collection do
+      get 'compose'
+    end
+  end
+  #get 'dishes/compose'
 
 #  devise_scope :user do
 #    get 'signin' => 'users/sessions#new'
