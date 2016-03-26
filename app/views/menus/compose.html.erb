@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>List of dishes</h1>
+<h1>Select dishes for menu "<%= @menu.name %>"</h1>
 
 <table>
   <thead>
@@ -13,19 +13,20 @@
   </tr>
   </thead>
 
-  <tbody>
-  <% @dishes.each do |dish| %>
+  <%= form_tag("/compose", method: "post") do %>
+    <tbody>
+    <% @dishes.each do |dish| %>
       <tr>
         <td><%= dish.category.name %></td>
         <td><%= dish.name %></td>
         <td><%= dish.description %></td>
         <td><%= dish.price %></td>
-        <td><%= link_to 'Show', dish %></td>
-        <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
-        <td><%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= check_box_tag 'dish_ids[]', dish.id %></td>
       </tr>
+    <% end %>
+    </tbody>
+    <%= submit_tag("Save") %>
   <% end %>
-  </tbody>
 </table>
 
 <br>
