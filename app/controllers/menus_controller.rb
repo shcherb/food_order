@@ -1,10 +1,16 @@
 class MenusController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_menu, only: [:compose, :show, :edit, :update, :destroy]
+  before_action :set_menu, only: [:dishes, :order, :compose, :show, :edit, :update, :destroy]
 
-  # GET /menues/1/compose
-  def compose
+  # GET /menus/1/dishes
+  def dishes
     @dishes = Dish.all
+  end
+
+  # GET /menus/1/order
+  def order
+    @dishes = @menu.dishes
+    render layout: false
   end
 
   # GET /menus
@@ -43,6 +49,15 @@ class MenusController < ApplicationController
     end
   end
 
+  # POST /menues/1/compose
+  def compose
+    @menu.dishes.clear
+    @menu.dish_ids = params[:dish_ids].map {|i| i.to_i}
+    respond_to do |format|
+      format.html { redirect_to dishes_menu_path(id: @menu.id), notice: 'Menu was successfully composed.' }
+    end
+  end
+
   # PATCH/PUT /menus/1
   # PATCH/PUT /menus/1.json
   def update
@@ -75,6 +90,6 @@ class MenusController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:category, :name, :description, :price, :photo)
+      params.require(:menu).permit(:category, :name, :description, :price, :photo, :dish_ids)
     end
 end

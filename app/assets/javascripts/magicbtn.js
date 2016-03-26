@@ -6,7 +6,7 @@ function newWin() {
     iframe.frameBorder = "no";
     iframe.height = "390";
     iframe.width = "490";
-    iframe.src = 'http://localhost:3000/menus';
+    iframe.src = 'http://localhost:3000/menus/6/order';
     win1.document.body.appendChild(iframe);
   }
   win1.focus();

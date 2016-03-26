@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root 'menus#index'
   resources :menus  do
     member do
-      get 'compose'
+      get 'dishes'
+      post 'compose'
+      get 'order'
     end
   end
   #resources :users

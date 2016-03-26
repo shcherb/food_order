@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Please, select dishes: </h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Categiry</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <%= form_tag(controller: 'menus', action: 'compose') do %>
+      <% @dishes.each do |dish| %>
+        <tr>
+          <td><%= check_box_tag 'dish_ids[]', dish.id, dish.menus.exists?(@menu) %></td>
+          <td><%= dish.category.name %></td>
+          <td><%= dish.name %></td>
+          <td><%= dish.description %></td>
+          <td><%= dish.price %></td>
+        </tr>
+      <% end %>
+      <%= submit_tag("Save") %>
+    <% end %>
+  </tbody>
+</table>
+
+
