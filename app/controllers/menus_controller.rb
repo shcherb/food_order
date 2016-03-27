@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, :only => [:order]
   before_action :set_menu, only: [:dishes, :order, :compose, :show, :edit, :update, :destroy]
 
   # GET /menus/1/dishes
@@ -36,7 +36,7 @@ class MenusController < ApplicationController
   # POST /menus
   # POST /menus.json
   def create
-    @menu = current_user.menus.build(menu_params)
+    @menu = current_user.menus.create(menu_params)
 
     respond_to do |format|
       if @menu.save

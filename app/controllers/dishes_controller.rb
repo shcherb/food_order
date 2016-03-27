@@ -5,7 +5,7 @@ class DishesController < ApplicationController
   # GET /dishes
   # GET /dishes.json
   def index
-    @dishes = Dish.all
+    @dishes = current_user.dishes
   end
 
   # GET /dishes/1
@@ -25,7 +25,7 @@ class DishesController < ApplicationController
   # POST /dishes
   # POST /dishes.json
   def create
-    @dish = Dish.new(dish_params)
+    @dish = current_user.dishes.create(dish_params)
 
     respond_to do |format|
       if @dish.save
