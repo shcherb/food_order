@@ -10,6 +10,7 @@ class MenusController < ApplicationController
   # GET /menus/1/order
   def order
     @dishes = @menu.dishes
+    @categories = @dishes.select(:category_id).distinct
     render layout: false
   end
 

@@ -1,6 +1,6 @@
 function newWin() {
   if (win1 == undefined || win1.closed) {
-    win1 = window.open("", "myWindow", "toolbar=0,width=500,height=400");
+    win1 = window.open("", "myWindow", "toolbar=1,width=500,height=400");
     var iframe = win1.document.createElement('iframe');
     iframe.name = 'myFrame';
     iframe.frameBorder = "no";
@@ -10,7 +10,8 @@ function newWin() {
     win1.document.body.appendChild(iframe);
   }
   win1.focus();
-} 
+}
+
 
 var win1
 var mydiv = window.document.createElement('div');
