@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   #get 'static_pages/example1'
+  get '*all' => 'application#cors_preflight_check', :constraints => {:method => 'OPTIONS'}
   devise_for :users, module: "users"
 
   root 'menus#index'

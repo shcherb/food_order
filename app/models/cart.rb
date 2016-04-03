@@ -1,3 +1,3 @@
 class Cart < ActiveRecord::Base
-  has_many :cart_items, dependent: :destroy
+  has_and_belongs_to_many  :dishes
 end

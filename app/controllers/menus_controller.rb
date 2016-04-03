@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  skip_before_filter :authenticate_user!, :only => [:order]
+  #skip_before_filter :authenticate_user!, :only => [:order]
   before_action :set_menu, only: [:dishes, :order, :compose, :show, :edit, :update, :destroy]
 
   # GET /menus/1/dishes

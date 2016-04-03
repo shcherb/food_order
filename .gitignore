@@ -47,3 +47,6 @@ build/
 
 # RubyMine environment
 /.idea/*
+
+# config-file secrets.yml
+/config/secrets.yml
