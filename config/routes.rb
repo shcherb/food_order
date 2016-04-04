@@ -1,20 +1,21 @@
 Rails.application.routes.draw do
+  root 'menus#index'
   #get 'static_pages/example1'
-  get '*all' => 'application#cors_preflight_check', :constraints => {:method => 'OPTIONS'}
+  #match '*all', to: 'application#cors_preflight_check', via: :options
   devise_for :users, module: "users"
 
-  root 'menus#index'
   resources :menus  do
     member do
       get 'dishes'
       post 'compose'
-      get 'order'
+      #get 'order'
     end
   end
   #resources :users
   resources :carts
   resources :categories
   resources :dishes
+  resources :order
   #get 'dishes/compose'
 
 #  devise_scope :user do

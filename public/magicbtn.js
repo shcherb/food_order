@@ -6,11 +6,28 @@ function newWin() {
     iframe.frameBorder = "no";
     iframe.height = "390";
     iframe.width = "490";
-    iframe.src = 'http://localhost:3000/menus/6/order';
+    iframe.src = 'http://localhost:3000/order';
     win1.document.body.appendChild(iframe);
   }
   win1.focus();
 }
+
+function newWin1() {
+  var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+
+var xhr_get = new XHR();
+xhr_get.open('GET', 'http://localhost:3000/order', true);
+
+xhr_get.onload = function() {
+  //alert( this.responseText );
+  alert( this.status );
+}
+xhr_get.onerror = function() {
+  alert( 'Service connection error' + this.status );
+}
+xhr_get.send();
+}
+
 
 
 var win1

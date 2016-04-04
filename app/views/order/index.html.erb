@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <%= form_tag(controller: 'menus', action: 'compose') do %>
+    <%= form_tag(controller: 'order', action: 'index') do %>
       <% @categories.each do |category|%>
         <td><%= Category.find(category.category_id).name %></td>
         <td colspan="6"></td>
