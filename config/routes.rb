@@ -15,7 +15,14 @@ Rails.application.routes.draw do
   resources :carts
   resources :categories
   resources :dishes
-  resources :order
+  resources :order, only: [:index] do
+    resources :dishes do
+    member do
+      post 'add_to_cart'
+      post 'delete_from_cart'
+    end
+      end
+  end
   #get 'dishes/compose'
 
 #  devise_scope :user do

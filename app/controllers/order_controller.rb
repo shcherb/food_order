@@ -1,26 +1,12 @@
 class OrderController < CorsController
   #before_action :set_menu, only: [:dishes, :order, :compose, :show, :edit, :update, :destroy]
 
-  # GET /menus/1/dishes
-  def dishes
-    @dishes = Dish.all
-  end
-
   # GET /order
   # GET /order.json
   def index
     @dishes = @menu.dishes
     @categories = @dishes.select(:category_id).distinct
     render layout: false
-  end
-
-  # GET /menus/new
-  def new
-    @menu = Menu.new
-  end
-
-  # GET /menus/1/edit
-  def edit
   end
 
   # POST /menus
@@ -36,15 +22,6 @@ class OrderController < CorsController
         format.html { render :new }
         format.json { render json: @menu.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # POST /menues/1/compose
-  def compose
-    @menu.dishes.clear
-    @menu.dish_ids = params[:dish_ids].map {|i| i.to_i}
-    respond_to do |format|
-      format.html { redirect_to dishes_menu_path(id: @menu.id), notice: 'Menu was successfully composed.' }
     end
   end
 

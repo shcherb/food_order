@@ -1,6 +1,23 @@
 function newWin() {
   if (win1 == undefined || win1.closed) {
     win1 = window.open("", "myWindow", "toolbar=1,width=500,height=400");
+    $.ajax({
+      url: "http://localhost:3000/order",
+      crossDomain: true,
+      context: win1.document.body,
+      cache: false,
+      success: function (html) {
+        $(this).append(html);
+      }
+    });
+  }
+  win1.focus();
+}
+
+
+function newWin3() {
+  if (win1 == undefined || win1.closed) {
+    win1 = window.open("", "myWindow", "toolbar=1,width=500,height=400");
     var iframe = win1.document.createElement('iframe');
     iframe.name = 'myFrame';
     iframe.frameBorder = "no";
