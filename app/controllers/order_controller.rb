@@ -4,49 +4,10 @@ class OrderController < CorsController
   # GET /order
   # GET /order.json
   def index
+    @cart = current_cart
     @dishes = @menu.dishes
     @categories = @dishes.select(:category_id).distinct
     render layout: false
-  end
-
-  # POST /menus
-  # POST /menus.json
-  def create
-    @menu = current_user.menus.create(menu_params)
-
-    respond_to do |format|
-      if @menu.save
-        format.html { redirect_to @menu, notice: 'Menu was successfully created.' }
-        format.json { render :show, status: :created, location: @menu }
-      else
-        format.html { render :new }
-        format.json { render json: @menu.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /menus/1
-  # PATCH/PUT /menus/1.json
-  def update
-    respond_to do |format|
-      if @menu.update(menu_params)
-        format.html { redirect_to @menu, notice: 'Menu was successfully updated.' }
-        format.json { render :show, status: :ok, location: @menu }
-      else
-        format.html { render :edit }
-        format.json { render json: @menu.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /menus/1
-  # DELETE /menus/1.json
-  def destroy
-    @menu.destroy
-    respond_to do |format|
-      format.html { redirect_to menus_url, notice: 'Menu was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private

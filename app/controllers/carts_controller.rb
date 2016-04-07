@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :cart_params, only: [:add_dish, :delete_dish]
 
   # GET /carts
   # GET /carts.json
@@ -19,6 +20,20 @@ class CartsController < ApplicationController
 
   # GET /carts/1/edit
   def edit
+  end
+
+  #
+  def add_dish
+    @cart = current_cart
+    @cart.dish_ids = params[:dish_id].to_i
+    respond_to do |format|
+      format.html { redirect_to order_path, notice: 'Dish was successfully added.' }
+    end
+  end
+
+  #
+  def delete_dish
+    render layout: false
   end
 
   # POST /carts
@@ -69,6 +84,6 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.fetch(:cart, {})
+      params.permit(:dish_id)
     end
 end

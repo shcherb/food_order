@@ -1,4 +1,4 @@
-function newWin() {
+function newWin3() {
   if (win1 == undefined || win1.closed) {
     win1 = window.open("", "myWindow", "toolbar=1,width=500,height=400");
     $.ajax({
@@ -15,14 +15,14 @@ function newWin() {
 }
 
 
-function newWin3() {
+function newWin() {
   if (win1 == undefined || win1.closed) {
-    win1 = window.open("", "myWindow", "toolbar=1,width=500,height=400");
+    win1 = window.open("", "myWindow", "toolbar=1,width=800,height=600");
     var iframe = win1.document.createElement('iframe');
     iframe.name = 'myFrame';
     iframe.frameBorder = "no";
-    iframe.height = "390";
-    iframe.width = "490";
+    iframe.height = "590";
+    iframe.width = "790";
     iframe.src = 'http://localhost:3000/order';
     win1.document.body.appendChild(iframe);
   }
