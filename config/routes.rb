@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post '/order/delete_from_cart' => 'carts#delete_dish'
   #get 'dishes/compose'
 
-  namespace :api, :defaults => {:format => :json} do
+  scope '/api', :defaults => {:format => :json} do
     get 'menus', to: 'menus#index'
     get 'menu/:id/dishes', to: 'menus#dishes'
     get 'categories', to: 'categories#index'
