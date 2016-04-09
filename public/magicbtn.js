@@ -1,8 +1,8 @@
-function newWin3() {
+function newWin() {
   if (win1 == undefined || win1.closed) {
     win1 = window.open("", "myWindow", "toolbar=1,width=500,height=400");
     $.ajax({
-      url: "http://localhost:3000/order",
+      url: "http://localhost:3000/order?menu_id=6",
       crossDomain: true,
       context: win1.document.body,
       cache: false,
@@ -15,7 +15,7 @@ function newWin3() {
 }
 
 
-function newWin() {
+function newWin3() {
   if (win1 == undefined || win1.closed) {
     win1 = window.open("", "myWindow", "toolbar=1,width=800,height=600");
     var iframe = win1.document.createElement('iframe');
@@ -25,6 +25,7 @@ function newWin() {
     iframe.width = "790";
     iframe.src = 'http://localhost:3000/order';
     win1.document.body.appendChild(iframe);
+    win1.location = iframe.src
   }
   win1.focus();
 }

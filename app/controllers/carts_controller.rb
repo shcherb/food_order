@@ -24,16 +24,24 @@ class CartsController < ApplicationController
 
   #
   def add_dish
-    @cart = current_cart
-    @cart.dish_ids = params[:dish_id].to_i
+    @cart_dish = CartsDish.new({cart_id: @cart.id, dish_id: @dish.id})
     respond_to do |format|
-      format.html { redirect_to order_path, notice: 'Dish was successfully added.' }
+      if @cart_dish.save
+        @count = @cart.dishes.where('dish_id = ?', @dish.id).count
+        #format.html { redirect_to order_path, notice: 'Dish was successfully added to cart.' }
+        format.js {}
+      end
     end
   end
 
   #
   def delete_dish
-    render layout: false
+    CartsDish.where('cart_id = ? AND dish_id = ?', @cart.id, @dish.id).first.destroy
+    @count = CartsDish.where('cart_id = ? AND dish_id = ?', @cart.id, @dish.id).count
+    respond_to do |format|
+      #format.html { redirect_to order_path, notice: 'Dish was successfully deleted from cart.' }
+      format.js {}
+    end
   end
 
   # POST /carts
@@ -71,7 +79,7 @@ class CartsController < ApplicationController
   def destroy
     @cart.destroy
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Cart was successfully cleaned.' }
       format.json { head :no_content }
     end
   end
@@ -84,6 +92,8 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.permit(:dish_id)
+      params.permit(:dish_id, :authenticity_token, :format)
+      @cart = current_cart
+      @dish = Dish.find(params[:dish_id])
     end
 end

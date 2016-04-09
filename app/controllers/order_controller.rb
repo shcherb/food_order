@@ -1,5 +1,6 @@
-class OrderController < CorsController
-  #before_action :set_menu, only: [:dishes, :order, :compose, :show, :edit, :update, :destroy]
+class OrderController < ApplicationController #CorsController
+  before_action :order_params
+  before_action :set_menu, only: [:index]
 
   # GET /order
   # GET /order.json
@@ -13,11 +14,11 @@ class OrderController < CorsController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_menu
-      @menu = Menu.find(params[:id])
+      @menu = Menu.find(params[:menu_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def menu_params
-      params.require(:menu).permit(:category, :name, :description, :price, :photo, :dish_ids)
+    def order_params
+      params.permit(:menu_id)
     end
 end

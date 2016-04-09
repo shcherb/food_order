@@ -1,0 +1,2 @@
+$("<%= '#dish' + @dish.id.to_s + '_count' %>").html("<%=j @count.to_s %>");
+$("<%= '#dish' + @dish.id.to_s + '_sum' %>").html("<%=j (@dish.price*@count).to_s %>");
