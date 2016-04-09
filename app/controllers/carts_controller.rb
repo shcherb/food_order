@@ -11,6 +11,7 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    render layout: false
   end
 
   # GET /carts/new

@@ -4,6 +4,7 @@
 <p id="notice"><%= notice %></p>
 
 <p><%= button_to 'Clean cart', @cart, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<p><%= button_to 'Cart', @cart, method: :get %></p>
 
 <h1>Please, select dishes: </h1>
 

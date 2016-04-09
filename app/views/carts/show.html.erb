@@ -1,4 +1,31 @@
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<p><%= button_to 'Send order', @cart, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<p><%= button_to 'Back to order', order_path, method: :get %></p>
+
+<h1>Please, check your order: </h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Count</th>
+    <th>Sum</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @cart.dishes.each do |dish|%>
+      <tr>
+        <td><%= dish.name %></td>
+        <td><%= dish.price %></td>
+        <td><%= dish_count(dish.id) %></td>
+        <td><%= dish_sum(dish) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

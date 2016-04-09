@@ -20,6 +20,17 @@ Rails.application.routes.draw do
   post '/order/delete_from_cart' => 'carts#delete_dish'
   #get 'dishes/compose'
 
+  namespace :api, :defaults => {:format => :json} do
+    get 'menus', to: 'menus#index'
+    get 'menu/:id/dishes', to: 'menus#dishes'
+    get 'categories', to: 'categories#index'
+    get 'dishes', to: 'dishes#index'
+    get 'cart', to: 'carts#cart'
+    delete 'carts/:id', to: 'carts#destroy'
+    post 'dish/:id/add_to_cart', to: 'carts#add_dish'
+    post 'dish/:id/delete_from_cart', to: 'carts#delete_dish'
+  end
+
 #  devise_scope :user do
 #    get 'signin' => 'users/sessions#new'
 #    match 'signout', to: 'users/sessions#destroy', via: :get
