@@ -10,7 +10,7 @@ class MenusController < ApplicationController
   # GET /menus/1/order
   def order
     @dishes = @menu.dishes
-    @categories = @dishes.select(:category_id).distinct
+    @categories = @dishes.select(:category_id).group(:category_id)
     render layout: false
   end
 
@@ -23,6 +23,7 @@ class MenusController < ApplicationController
   # GET /menus/1
   # GET /menus/1.json
   def show
+    @categories = @menu.dishes.select(:category_id).group(:category_id)
   end
 
   # GET /menus/new

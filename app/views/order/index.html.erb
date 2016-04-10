@@ -23,8 +23,10 @@
 
   <tbody>
       <% @categories.each do |category|%>
-        <td><%= Category.find(category.category_id).name %></td>
-        <td colspan="6"></td>
+        <tr>
+          <td><%= Category.find(category.category_id).name %></td>
+          <td colspan="6"></td>
+        </tr>
         <% @dishes.where("category_id = ?", category.category_id).each do |dish| %>
           <tr>
             <td></td>

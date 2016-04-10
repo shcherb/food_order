@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   before_action :cart_params, only: [:add_dish, :delete_dish]
+  respond_to :json
 
   # GET /carts
   # GET /carts.json
@@ -29,8 +30,10 @@ class CartsController < ApplicationController
     respond_to do |format|
       if @cart_dish.save
         @count = @cart.dishes.where('dish_id = ?', @dish.id).count
-        #format.html { redirect_to order_path, notice: 'Dish was successfully added to cart.' }
         format.js {}
+        format.json { render json: @cart, status: :created}
+      else
+        format.json { render json: @cart.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,8 +43,8 @@ class CartsController < ApplicationController
     CartsDish.where('cart_id = ? AND dish_id = ?', @cart.id, @dish.id).first.destroy
     @count = CartsDish.where('cart_id = ? AND dish_id = ?', @cart.id, @dish.id).count
     respond_to do |format|
-      #format.html { redirect_to order_path, notice: 'Dish was successfully deleted from cart.' }
       format.js {}
+      format.json { render json: "success", status: :ok}
     end
   end
 
