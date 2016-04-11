@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
     cart
   end
 
+  def current_menu
+    Menu.find(session[:menu_id])
+  rescue ActiveRecord::RecordNotFound
+    session.delete(:menu_id)
+    return nil
+  end
+
 end

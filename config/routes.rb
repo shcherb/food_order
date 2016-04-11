@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       post 'compose'
     end
   end
-  #resources :users
+  resources :users
   resources :carts
   resources :categories
   resources :dishes
@@ -17,20 +17,22 @@ Rails.application.routes.draw do
   post '/order/delete_from_cart' => 'carts#delete_dish'
 
   scope '/api', :defaults => {:format => :json} do
-    devise_scope :user do
-      get 'sign_in', to: 'users/sessions#new'
-      get 'signout', to: 'users/sessions#destroy'
+    scope '/v1' do
+      devise_scope :user do
+        post 'sign_in', to: 'users/sessions#create'
+        delete 'sign_out', to: 'users/sessions#destroy'
+      end
+      get 'menus', to: 'menus#index'
+      get 'menus/:id', to: 'menus#show'
+      get 'categories', to: 'categories#index'
+      get 'dishes', to: 'dishes#index'
+      get 'dishes/:id', to: 'dishes#show'
+      get 'carts/:id', to: 'carts#show'
+      post 'carts', to: 'carts#create'
+      delete 'carts/:id', to: 'carts#destroy'
+      post 'dish/:id/add_to_cart', to: 'carts#add_dish'
+      post 'dish/:id/delete_from_cart', to: 'carts#delete_dish'
     end
-    get 'menus', to: 'menus#index'
-    get 'menus/:id', to: 'menus#show'
-    get 'categories', to: 'categories#index'
-    get 'dishes', to: 'dishes#index'
-    get 'dishes/:id', to: 'dishes#show'
-    get 'carts/:id', to: 'carts#show'
-    post 'carts', to: 'carts#create'
-    delete 'carts/:id', to: 'carts#destroy'
-    post 'dish/:id/add_to_cart', to: 'carts#add_dish'
-    post 'dish/:id/delete_from_cart', to: 'carts#delete_dish'
   end
 
 end

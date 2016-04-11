@@ -1,4 +1,4 @@
-class CartsController < ApplicationController
+class CartsController < CorsController #ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   before_action :cart_params, only: [:add_dish, :delete_dish]
   respond_to :json

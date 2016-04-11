@@ -1,8 +1,8 @@
 function newWin() {
   if (win1 == undefined || win1.closed) {
-    win1 = window.open("", "myWindow", "toolbar=1,width=500,height=400");
+    win1 = window.open("", "myWindow", "toolbar=1,width=800,height=600");
     $.ajax({
-      url: "http://localhost:3000/order?menu_id=6",
+      url: "http://localhost:3000/order",
       crossDomain: true,
       context: win1.document.body,
       cache: false,
@@ -10,6 +10,7 @@ function newWin() {
         $(this).append(html);
       }
     });
+    win1.location = "http://localhost:3000/order";
   }
   win1.focus();
 }
