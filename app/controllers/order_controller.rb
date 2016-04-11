@@ -1,5 +1,5 @@
 class OrderController < CorsController #ApplicationController
-  before_action :set_menu, only: [:index]
+  before_action :set_menu
 
   # GET /order
   def index
@@ -12,9 +12,7 @@ class OrderController < CorsController #ApplicationController
   private
 
   def set_menu
-    if @menu.nil?
-      @menu = Menu.find(sessin[:menu_id])
-    end
+    @menu = current_menu
   end
 
 end

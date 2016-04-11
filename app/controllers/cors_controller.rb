@@ -1,15 +1,11 @@
 class CorsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :cors_preflight_check
-  before_filter :cors_set_access_control_headers
+  after_filter :cors_set_access_control_headers
 
   def cors_set_access_control_headers
-    if access_allowed?
-      set_headers
-      headers["Access-Control-Allow-Headers"] = 'Origin, Accept, Content-Type, Authorization, Token'
-    else
-      head :forbidden
-    end
+    set_headers
+    headers["Access-Control-Allow-Headers"] = 'Origin, Accept, Content-Type, Authorization, Token'
   end
 
   def cors_preflight_check
