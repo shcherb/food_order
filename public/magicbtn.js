@@ -1,4 +1,4 @@
-function newWin() {
+function newWin1() {
   if (win1 == undefined || win1.closed) {
     win1 = window.open("", "myWindow", "toolbar=1,width=800,height=600");
     $.ajax({
@@ -10,23 +10,24 @@ function newWin() {
         $(this).append(html);
       }
     });
-    win1.location = "http://localhost:3000/order";
+    win1.history.pushState(nill, nill, "http://localhost:3000/order");
+    //win1.location = "http://localhost:3000/order";
   }
   win1.focus();
 }
 
 
-function newWin3() {
+function newWin() {
   if (win1 == undefined || win1.closed) {
-    win1 = window.open("", "myWindow", "toolbar=1,width=800,height=600");
+    win1 = window.open("http://localhost:3000/order", "myWindow", "toolbar=1,width=800,height=600");
     var iframe = win1.document.createElement('iframe');
     iframe.name = 'myFrame';
     iframe.frameBorder = "no";
     iframe.height = "590";
     iframe.width = "790";
     iframe.src = 'http://localhost:3000/order';
-    win1.document.body.appendChild(iframe);
-    win1.location = iframe.src
+//    win1.document.body.appendChild(iframe);
+    //win1.location = iframe.src
   }
   win1.focus();
 }
@@ -46,8 +47,6 @@ xhr_get.onerror = function() {
 }
 xhr_get.send();
 }
-
-
 
 var win1
 var mydiv = window.document.createElement('div');

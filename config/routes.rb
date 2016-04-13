@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'menus#index'
   devise_for :users, module: "users"
+  devise_scope :user do
+    get 'signout', to: 'users/sessions#destroy'
+  end
 
   resources :menus  do
     member do
@@ -9,7 +12,11 @@ Rails.application.routes.draw do
     end
   end
   resources :users
-  resources :carts
+  resources :carts do
+    member do
+      post 'confirm'
+    end
+  end
   resources :categories
   resources :dishes
   get '/order' => 'order#index'
@@ -28,6 +35,7 @@ Rails.application.routes.draw do
       get 'dishes', to: 'dishes#index'
       get 'dishes/:id', to: 'dishes#show'
       get 'carts/:id', to: 'carts#show'
+      post 'carts/:id/confirm', to: 'carts#confirm'
       post 'carts', to: 'carts#create'
       delete 'carts/:id', to: 'carts#destroy'
       post 'dish/:id/add_to_cart', to: 'carts#add_dish'

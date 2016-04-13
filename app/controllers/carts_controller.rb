@@ -1,7 +1,7 @@
-class CartsController < CorsController #ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+class CartsController < ApplicationController
+  before_action :set_cart, only: [:show, :edit, :update, :destroy, :confirm]
   before_action :cart_params, only: [:add_dish, :delete_dish]
-  respond_to :json
+  #respond_to :html, :json
 
   # GET /carts
   # GET /carts.json
@@ -22,6 +22,25 @@ class CartsController < CorsController #ApplicationController
 
   # GET /carts/1/edit
   def edit
+  end
+
+  # POST /carts/1/confirm
+  def confirm
+    session.delete(:cart_id)
+    respond_to do |format|
+      if @cart.dishes.empty?
+        format.html { redirect_to @cart, notice: 'Is nothing to send. Cart is empty.' }
+        format.json { render json: "Is nothing to send. Cart is empty.", status: :not_modified}
+      end
+      if (params[:phone].empty?) && (params[:email].empty?)
+        format.html { redirect_to @cart, notice: 'Please, fill phone field or email field.' }
+        format.json { render json: "phone or email is needed", status: :not_modified}
+      else
+        FoodOrderMailer.order_email(current_user, params[:phone], params[:email], @cart).deliver_now
+        format.html { redirect_to order_path, notice: 'Your order was successfully sent. You may do one more.' }
+        format.json { render json: "success", status: :ok}
+      end
+    end
   end
 
   #
@@ -96,7 +115,7 @@ class CartsController < CorsController #ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.permit(:dish_id, :authenticity_token, :format)
+      params.permit(:phone, :email, :dish_id, :authenticity_token, :format)
       @cart = current_cart
       @dish = Dish.find(params[:dish_id])
     end

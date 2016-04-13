@@ -4,7 +4,7 @@ class MenusController < ApplicationController
 
   # GET /menus/1/dishes
   def dishes
-    @dishes = Dish.all
+    @dishes = current_user.dishes
   end
 
   # GET /menus/1/order
@@ -65,7 +65,7 @@ class MenusController < ApplicationController
   def update
     respond_to do |format|
       if @menu.update(menu_params)
-        format.html { redirect_to @menu, notice: 'Menu was successfully updated.' }
+        format.html { redirect_to menus_path, notice: 'Menu was successfully updated.' }
         format.json { render :show, status: :ok, location: @menu }
       else
         format.html { render :edit }
@@ -92,6 +92,6 @@ class MenusController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:category, :name, :description, :price, :photo, :dish_ids)
+      params.require(:menu).permit(:name, :url)
     end
 end

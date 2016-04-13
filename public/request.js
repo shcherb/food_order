@@ -15,7 +15,7 @@ var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 var xhr_get = new XHR();
 xhr_get.withCredentials = true;
 
-xhr_get.open('GET', 'http://localhost:3000/users/sign_in?user_email=user1@example.org&user_token=3UAFyzm-wF7gRvgvY3AX', true);
+xhr_get.open('GET', 'http://localhost:3000/users/sign_in?user_email=shcherb@ukr.net&user_token=dX5GgFQLHqPFd5FV2pxq', true);
 
 xhr_get.onload = function() {
     //alert( this.responseText );

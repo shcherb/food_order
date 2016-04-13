@@ -1,9 +1,15 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<%= csrf_meta_tags %>
 
 <p id="notice"><%= notice %></p>
 
-<p><%= button_to 'Send order', @cart, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
+<%= form_tag(confirm_cart_path(@cart), method: :confirm, data: { confirm: 'Are you sure?' }) do %>
+  <div><%= label_tag(:phone, "Your phone:")%>
+       <%= phone_field_tag(:phone)%></div>
+  <div><%= label_tag(:email, "Your email:")%>
+       <%= email_field_tag(:email)%></div>
+  <div><%= submit_tag("Send order") %></div>
+  <% end %>
 <p><%= button_to 'Back to order', order_path, method: :get %></p>
 
 <h1>Please, check your order: </h1>

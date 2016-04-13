@@ -1,0 +1,26 @@
+<h1>New order:</h1>
+
+<p>Contact phone: <%= @phone %></p>
+<p>Contact email: <%= @email %></p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Count</th>
+    <th>Sum</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @cart.dishes.each do |dish|%>
+      <tr>
+        <td><%= dish.name %></td>
+        <td><%= dish.price %></td>
+        <td><%= dish_count(dish.id) %></td>
+        <td><%= dish_sum(dish) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

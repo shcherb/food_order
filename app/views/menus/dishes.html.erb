@@ -2,19 +2,19 @@
 
 <h1>Select dishes for menu "<%= @menu.name %>"</h1>
 
-<table>
-  <thead>
-  <tr>
-    <th></th>
-    <th>Categiry</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Price</th>
-  </tr>
-  </thead>
+<%= form_tag(controller: 'menus', action: 'compose') do %>
+  <table>
+    <thead>
+    <tr>
+      <th></th>
+      <th>Categiry</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
+    </thead>
 
-  <tbody>
-    <%= form_tag(controller: 'menus', action: 'compose') do %>
+    <tbody>
       <% @dishes.each do |dish| %>
         <tr>
           <td><%= check_box_tag 'dish_ids[]', dish.id, dish.menus.exists?(@menu) %></td>
@@ -24,9 +24,9 @@
           <td><%= dish.price %></td>
         </tr>
       <% end %>
-      <%= submit_tag("Save") %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+  <%= submit_tag("Save") %>
+<% end %>
 
 
