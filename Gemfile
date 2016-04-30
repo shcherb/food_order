@@ -29,6 +29,9 @@ gem 'devise'
 # gem for token authentication
 gem 'simple_token_authentication', '~> 1.0'
 
+# gem for annotate models and others based on the schema
+gem 'annotate', '~> 2.7'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

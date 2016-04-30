@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: menus
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  url        :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#
+
 class MenusController < ApplicationController
   #skip_before_filter :authenticate_user!, :only => [:order]
   before_action :set_menu, only: [:dishes, :order, :compose, :show, :edit, :update, :destroy]

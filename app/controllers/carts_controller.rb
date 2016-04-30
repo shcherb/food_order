@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: carts
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy, :confirm]
   before_action :cart_params, only: [:add_dish, :delete_dish]
