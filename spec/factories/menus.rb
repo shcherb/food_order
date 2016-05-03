@@ -7,8 +7,8 @@ FactoryGirl.define do
         dishes_count 3
       end
 
-      after(:create) do
-        create_list(:dish, 3)
+      after(:create) do |menu, evaluator|
+        create_list(:dish, evaluator.dishes_count, menus: [menu])
       end
     end
     association(:user)
